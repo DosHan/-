@@ -1,4 +1,4 @@
- 所需jar包: gson.jar 由谷歌开发的json应用  代码实际运用如下
+所需jar包: gson.jar 由谷歌开发的json应用  代码实际运用如下
 
 package com.neuedu.util;
 
@@ -11,41 +11,39 @@ import com.neuedu.modle.User;
 
 public class Test {
 
- public static void main(String[] args) {
-  String userStr = "{\"id\":1,\"username\":\"Tom\",\"password\":\"111\"}";
-  String listStr = "[{\"id\":1,\"username\":\"Tom\",\"password\":\"111\"}]";
-  String cp_user_str = "{\"userList\":" + listStr
-  + ",\"pageIndex\":1,\"pageCount\":10,\"pageSize\":5}";
-  System.out.println();
+public static void main(String[] args) {
+String userStr = "{\"id\":1,\"username\":\"Tom\",\"password\":\"111\"}";
+String listStr = "[{\"id\":1,\"username\":\"Tom\",\"password\":\"111\"}]";
+String cp_user_str = "{\"userList\":" + listStr
++ ",\"pageIndex\":1,\"pageCount\":10,\"pageSize\":5}";
+System.out.println();
 
-  User user = new User(1, "Tom", "111");
-  ArrayList<User> list = new ArrayList<User>();
-  for (int i = 0; i < 5; i++) {
-   list.add(new User(i, "user" + i, "111"));
-  }
-  Gson gson = new Gson();
-  String str1 = gson.toJson(user);
-  System.out.println(str1);
-  String str2 = gson.toJson(list);
-  System.out.println(str2);
-
-  User tmp = gson.fromJson(userStr, User.class);
-  System.out.println(tmp.getUsername());
-  ArrayList<User> tmp2 = gson.fromJson(listStr,
-   new TypeToken<ArrayList<User>>() {
-   }.getType());
-  /*
-  * 可以看到上面的代码使用了TypeToken，它是gson提供的数据类型转换器，可以支持各种数据集合类型转换。 调试注意：
-  * 经过Gson解析成为map的数据，经常需要通过map.get(key)获取类型为Object的值，我们常需要将Object进行强制转换
-  * 转换为我们需要的类型
-  * 这里注意，若我们想将整形数字1存入json串，经gson解析后，可能会变成1.0，这样我们只能使用Double类对其进行强转
-  * 再使用Double类型的intValue()方法将其转为整形。
-  */
-  System.out.println(tmp2.get(0).getId());
-
-  Cp_User cp = gson.fromJson(cp_user_str, Cp_User.class);
-  System.out.println(cp.getUserList().get(0).getId());
- }
+User user = new User(1, "Tom", "111");
+ArrayList<User> list = new ArrayList<User>();
+for (int i = 0; i < 5; i++) {
+list.add(new User(i, "user" + i, "111"));
 }
+Gson gson = new Gson();
+String str1 = gson.toJson(user);
+System.out.println(str1);
+String str2 = gson.toJson(list);
+System.out.println(str2);
 
+User tmp = gson.fromJson(userStr, User.class);
+System.out.println(tmp.getUsername());
+ArrayList<User> tmp2 = gson.fromJson(listStr,
+new TypeToken<ArrayList<User>>() {
+}.getType());
+/*
+* 可以看到上面的代码使用了TypeToken，它是gson提供的数据类型转换器，可以支持各种数据集合类型转换。 调试注意：
+* 经过Gson解析成为map的数据，经常需要通过map.get(key)获取类型为Object的值，我们常需要将Object进行强制转换
+* 转换为我们需要的类型
+* 这里注意，若我们想将整形数字1存入json串，经gson解析后，可能会变成1.0，这样我们只能使用Double类对其进行强转
+* 再使用Double类型的intValue()方法将其转为整形。
+*/
+System.out.println(tmp2.get(0).getId());
 
+Cp_User cp = gson.fromJson(cp_user_str, Cp_User.class);
+System.out.println(cp.getUserList().get(0).getId());
+}
+}
