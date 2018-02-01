@@ -1,0 +1,25 @@
+对于大部分的程序来说，数据的输入和输出是相当重要的部分。因为我们要让程序帮我们做事情，就必须要告诉它做什么，这就是输入。同样，在程序完成你交给他的任务的时候，你也是需要得到程序执行结果的，一般都会在屏幕上显示出来。这就是所谓的输出了。
+
+      输入的基本方法：
+      Scanner scan = new Scanner(System.in) ;
+      int a = scan nextInt();
+
+      输出的基本方法：
+      System.out.println(a);
+   
+      基本输入输出代码参考
+import java.util.Scanner;
+public class ching{
+    public static void main(String[] args){
+    Scanner scan = new Scanner(System.in);
+    System.out.println("Please enter your first number:") 
+    int a = scan.nextInt();
+    System.out.println("Please enter your second number:")
+    int b = scan.nextInt();
+    int sum = a + b;
+    System.out.println("The sum of" + a + "+" + b + "=" + sum) 
+    }
+}
+
+更多详细的jdk方法可参考
+JDK6 API :  http://docs.oracle.com/javase/6/docs/api/ ;
